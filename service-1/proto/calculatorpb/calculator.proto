@@ -1,0 +1,28 @@
+syntax = "proto3";
+
+package calculatorpb;
+
+message Number {
+  int32 number = 1;
+}
+
+message PrimeDecompositionRequest {
+  Number number = 1;
+}
+
+message PrimeDecompositionResponse{
+  int32 result = 1;
+}
+
+message ComputeAverageRequest {
+  Number number = 1;
+}
+
+message ComputeAverageResponse {
+  double result = 1;
+}
+
+service CalculatorService {
+  rpc ComputeAverage(stream ComputeAverageRequest) returns (ComputeAverageResponse) {}
+  rpc PrimeDecomposition(PrimeDecompositionRequest) returns (stream PrimeDecompositionResponse) {}
+}

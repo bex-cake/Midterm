@@ -1,0 +1,21 @@
+version: "3"
+
+services:
+  micro-1:
+    build: ./service-1
+    restart: always
+    container_name: micro-1
+    environment:
+      - PORT=50051
+    ports:
+      - 50051:50051
+
+  micro-2:
+    build: ./service-2
+    restart: always
+    container_name: micro-2
+    environment:
+      - HOST=micro-1
+      - PORT=50051
+    depends_on:
+      - micro-1
